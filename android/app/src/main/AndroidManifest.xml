@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="top.z7workbench.focyapp">
    <application
-        android:label="focyapp"
+        android:label="Focy"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
