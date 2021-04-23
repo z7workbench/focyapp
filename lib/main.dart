@@ -3,9 +3,7 @@ import 'package:focyapp/charts_page.dart';
 import 'package:focyapp/list_page.dart';
 import 'package:focyapp/personal_page.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -50,10 +48,18 @@ class _MainPageState extends State<MainPage> {
       body: pages[current],
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: "List"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.table_chart), label: "Charts"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Me")
+              backgroundColor: Colors.cyan,
+              icon: Icon(Icons.list),
+              label: "List"),
+          BottomNavigationBarItem(
+              backgroundColor: Colors.orange,
+              icon: Icon(Icons.table_chart),
+              label: "Charts"),
+          BottomNavigationBarItem(
+              backgroundColor: Colors.green,
+              icon: Icon(Icons.person),
+              label: "Me")
         ],
         currentIndex: current,
         type: BottomNavigationBarType.shifting,
