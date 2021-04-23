@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:focyapp/charts_page.dart';
+import 'package:focyapp/list_page.dart';
+import 'package:focyapp/personal_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,11 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Focy',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainPage(title: 'Flutter Demo Home Page'),
+      home: MainPage(title: 'Focy App'),
     );
   }
 }
@@ -27,12 +30,15 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _counter = 0;
+  final pages = [ListPage(), ChartsPage(), PersonalPage()];
+  int current = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  _changePages(int index) {
+    if (index != current) {
+      setState(() {
+        current = index;
+      });
+    }
   }
 
   @override
@@ -41,25 +47,20 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: pages[current],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.list), label: "List"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.table_chart), label: "Charts"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Me")
+        ],
+        currentIndex: current,
+        type: BottomNavigationBarType.shifting,
+        onTap: (index) {
+          _changePages(index);
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
