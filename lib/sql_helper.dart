@@ -1,4 +1,4 @@
-import 'package:focyapp/DataStructs.dart';
+import 'package:focyapp/data_structs.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 

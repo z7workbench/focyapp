@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class ChartsPage extends StatefulWidget{
-
+class HomePage extends StatefulWidget{
   @override
-  State createState() => ChartsStage();
+  State createState() => HomeStage();
 }
 
-class ChartsStage extends State<ChartsPage> {
+class HomeStage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) => Scaffold (
-    body: Text("charts"),
+    body: Text("home"),
   );
 }

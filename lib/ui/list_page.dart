@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ListPage extends StatefulWidget{
-
   @override
   State createState() => ListStage();
 }

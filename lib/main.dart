@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:focyapp/charts_page.dart';
-import 'package:focyapp/list_page.dart';
-import 'package:focyapp/personal_page.dart';
+import 'ui/add_page.dart';
+import 'ui/charts_page.dart';
+import 'ui/list_page.dart';
+import 'ui/personal_page.dart';
+import 'ui/home_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,9 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Focy',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.cyan,
       ),
       home: MainPage(title: 'Focy App'),
+      routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => MainPage(),
+        '/add': (BuildContext context) => AddPage(),
+      },
     );
   }
 }
@@ -28,7 +34,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final pages = [ListPage(), ChartsPage(), PersonalPage()];
+  final colors = [Colors.cyan, Colors.orange, Colors.indigo, Colors.green];
+  final pages = [HomePage(), ListPage(), ChartsPage(), PersonalPage()];
   int current = 0;
 
   _changePages(int index) {
@@ -41,31 +48,49 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: pages[current],
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-              backgroundColor: Colors.cyan,
-              icon: Icon(Icons.list),
-              label: "List"),
-          BottomNavigationBarItem(
-              backgroundColor: Colors.orange,
-              icon: Icon(Icons.table_chart),
-              label: "Charts"),
-          BottomNavigationBarItem(
-              backgroundColor: Colors.green,
-              icon: Icon(Icons.person),
-              label: "Me")
-        ],
-        currentIndex: current,
-        type: BottomNavigationBarType.shifting,
-        onTap: (index) {
-          _changePages(index);
-        },
+    return Theme(
+      data: ThemeData(
+          primarySwatch: colors[current],
+          iconTheme: IconThemeData(color: colors[current])),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+          centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                Navigator.pushNamed(context, "/add");
+              },
+            )
+          ],
+        ),
+        body: pages[current],
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+                backgroundColor: colors[0],
+                icon: Icon(Icons.home),
+                label: "Home"),
+            BottomNavigationBarItem(
+                backgroundColor: colors[1],
+                icon: Icon(Icons.list),
+                label: "List"),
+            BottomNavigationBarItem(
+                backgroundColor: colors[2],
+                icon: Icon(Icons.table_chart),
+                label: "Charts"),
+            BottomNavigationBarItem(
+                backgroundColor: colors[3],
+                icon: Icon(Icons.person),
+                label: "Me")
+          ],
+          currentIndex: current,
+          type: BottomNavigationBarType.shifting,
+          onTap: (index) {
+            _changePages(index);
+          },
+        ),
       ),
     );
   }
