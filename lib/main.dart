@@ -17,10 +17,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.cyan,
       ),
       home: MainPage(title: 'Focy App'),
-      routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => MainPage(),
-        '/add': (BuildContext context) => AddPage(),
-      },
     );
   }
 }
@@ -60,7 +56,12 @@ class _MainPageState extends State<MainPage> {
             IconButton(
               icon: Icon(Icons.add),
               onPressed: () {
-                Navigator.pushNamed(context, "/add");
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddPage(
+                              themeColor: colors[current],
+                            )));
               },
             )
           ],
