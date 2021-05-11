@@ -20,7 +20,17 @@ class HomeStage extends State<HomePage> {
       child: Scaffold(
         body: Column(
           children: <Widget>[
-            Text("July"),
+            Container(
+              child: Text(
+                "July",
+                style: TextStyle(fontSize: 20),
+              ),
+              width: double.infinity,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  color: themeColor),
+            ),
             Text("July"),
             Text("July"),
             Text("text")

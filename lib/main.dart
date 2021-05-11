@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:focyapp/constants.dart';
 import 'ui/add_page.dart';
 import 'ui/charts_page.dart';
 import 'ui/list_page.dart';
@@ -30,8 +31,14 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final colors = [Colors.cyan, Colors.orange, Colors.indigo, Colors.green];
-  final pages = [HomePage(), ListPage(), ChartsPage(), PersonalPage()];
+  final pages = [
+    HomePage(
+      themeColor: colors[0],
+    ),
+    ListPage(),
+    ChartsPage(),
+    PersonalPage()
+  ];
   int current = 0;
 
   _changePages(int index) {
@@ -52,6 +59,7 @@ class _MainPageState extends State<MainPage> {
         appBar: AppBar(
           title: Text(widget.title),
           centerTitle: true,
+          elevation: 0,
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.add),
