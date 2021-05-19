@@ -42,6 +42,8 @@ class _MainPageState extends State<MainPage> {
   int current = 0;
 
   _changePages(int index) {
+    if (index < 0) index = 0;
+    if (index >= pages.length) index = pages.length;
     if (index != current) {
       setState(() {
         current = index;
@@ -74,7 +76,13 @@ class _MainPageState extends State<MainPage> {
             )
           ],
         ),
-        body: pages[current],
+        body: PageView(
+            onPageChanged: (int index) => _changePages(index),
+            reverse: false,
+            physics: BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            controller: PageController(initialPage: 0),
+            children: pages),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(

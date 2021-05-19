@@ -1,4 +1,4 @@
-class FocyRecord{
+class FocyRecord {
   int id;
   String title;
   double price;
@@ -10,44 +10,39 @@ class FocyRecord{
   int purpose;
 }
 
-class RecordPurpose{
+class RecordPurpose {
   int id;
   String title;
   String color;
   String description;
 }
 
-class SubRecordPurpose{
+class SubRecordPurpose {
   int id;
   String title;
   int mainPurpose;
   String description;
 }
 
-class FocyBook{
+class FocyBook {
   int id;
   String title;
   String description;
-  FocyBook(int id, String title, String desc){
+  FocyBook(int id, String title, String desc) {
     this.id = id;
     this.title = title;
     this.description = desc;
   }
 
-  Map<String, Object> toMap() => {
-    "id": id,
-    "title": title,
-    "description": description
-  };
+  Map<String, Object> toMap() =>
+      {"id": id, "title": title, "description": description};
 }
 
-class Account{
+class Account {
   int id;
   String title;
   String color;
   String description;
 }
 
-enum RecordType {
-  money_in, money_out, loan_in, loan_out
-}
+enum RecordType { money_in, money_out, loan_in, loan_out }
