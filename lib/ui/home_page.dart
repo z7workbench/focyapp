@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:focyapp/utils.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.themeColor}) : super(key: key);
-  Color themeColor;
+  HomePage({required this.themeColor}) : super();
+  final MaterialColor themeColor;
 
   @override
   State createState() => HomeStage(themeColor: themeColor);
 }
 
 class HomeStage extends State<HomePage> {
-  HomeStage({this.themeColor}) : super();
-  Color themeColor;
+  HomeStage({required this.themeColor}) : super();
+  MaterialColor themeColor;
+  DateTime now = DateTime.now();
+
+  getFormattedYearMonth() {
+    now = DateTime.now();
+  }
 
   @override
   Widget build(BuildContext context) => Theme(
@@ -22,14 +28,13 @@ class HomeStage extends State<HomePage> {
           children: <Widget>[
             Container(
               child: Text(
-                "July",
+                "${getMonth(now.month, context)},${now.toString()}",
                 style: TextStyle(fontSize: 20),
               ),
               width: double.infinity,
               padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: themeColor),
+              decoration:
+                  BoxDecoration(shape: BoxShape.rectangle, color: themeColor),
             ),
             Text("July"),
             Text("July"),

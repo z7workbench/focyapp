@@ -1,13 +1,24 @@
 class FocyRecord {
-  int id;
-  String title;
-  double price;
-  RecordType type;
-  String description;
-  int time;
-  int bookId;
-  int account;
-  int purpose;
+  late int id;
+  late String title;
+  late double price;
+  late RecordType type;
+  late String description;
+  late int time;
+  late int bookId;
+  late int account;
+  late int purpose;
+
+  FocyRecord(
+      {this.id = 0,
+      required this.title,
+      required this.price,
+      required this.type,
+      required this.description,
+      required this.time,
+      required this.bookId,
+      required this.account,
+      required this.purpose});
 }
 
 class RecordPurpose {
@@ -15,6 +26,12 @@ class RecordPurpose {
   String title;
   String color;
   String description;
+
+  RecordPurpose(
+      {this.id = 0,
+      required this.title,
+      required this.color,
+      required this.description});
 }
 
 class SubRecordPurpose {
@@ -22,18 +39,20 @@ class SubRecordPurpose {
   String title;
   int mainPurpose;
   String description;
+
+  SubRecordPurpose(
+      {this.id = 0,
+      required this.title,
+      required this.mainPurpose,
+      required this.description});
 }
 
 class FocyBook {
   int id;
   String title;
   String description;
-  FocyBook(int id, String title, String desc) {
-    this.id = id;
-    this.title = title;
-    this.description = desc;
-  }
 
+  FocyBook({this.id = 0, required this.title, required this.description});
   Map<String, Object> toMap() =>
       {"id": id, "title": title, "description": description};
 }
@@ -43,6 +62,12 @@ class Account {
   String title;
   String color;
   String description;
+
+  Account(
+      {this.id = 0,
+      required this.title,
+      required this.color,
+      required this.description});
 }
 
 enum RecordType { money_in, money_out, loan_in, loan_out }

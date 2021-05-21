@@ -1,0 +1,20 @@
+{
+    "@@locale": "en",
+    "jan": "January",
+    "feb": "Febuary",
+    "mar": "March",
+    "apr": "April",
+    "may": "May",
+    "jun": "June",
+    "jul": "July",
+    "aug": "August",
+    "sep": "September",
+    "oct": "October",
+    "nov": "November",
+    "dec": "December",
+
+    "home": "Home",
+    "list": "List",
+    "charts": "Charts",
+    "me": "Me"
+}

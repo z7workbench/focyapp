@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:focyapp/constants.dart';
 import 'ui/add_page.dart';
 import 'ui/charts_page.dart';
 import 'ui/list_page.dart';
 import 'ui/personal_page.dart';
 import 'ui/home_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,12 +20,22 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.cyan,
       ),
       home: MainPage(title: 'Focy App'),
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('zh', 'CN'),
+      ],
     );
   }
 }
 
 class MainPage extends StatefulWidget {
-  MainPage({Key key, this.title}) : super(key: key);
+  MainPage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -39,7 +51,8 @@ class _MainPageState extends State<MainPage> {
     ChartsPage(),
     PersonalPage()
   ];
-  int current = 0;
+  var current = 0;
+  var _controller = PageController();
 
   _changePages(int index) {
     if (index < 0) index = 0;
@@ -81,31 +94,34 @@ class _MainPageState extends State<MainPage> {
             reverse: false,
             physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            controller: PageController(initialPage: 0),
+            controller: _controller,
             children: pages),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
                 backgroundColor: colors[0],
                 icon: Icon(Icons.home),
-                label: "Home"),
+                label: AppLocalizations.of(context)!.home),
             BottomNavigationBarItem(
                 backgroundColor: colors[1],
                 icon: Icon(Icons.list),
-                label: "List"),
+                label: AppLocalizations.of(context)!.list),
             BottomNavigationBarItem(
                 backgroundColor: colors[2],
                 icon: Icon(Icons.table_chart),
-                label: "Charts"),
+                label: AppLocalizations.of(context)!.charts),
             BottomNavigationBarItem(
                 backgroundColor: colors[3],
                 icon: Icon(Icons.person),
-                label: "Me")
+                label: AppLocalizations.of(context)!.me)
           ],
           currentIndex: current,
           type: BottomNavigationBarType.shifting,
           onTap: (index) {
             _changePages(index);
+            _controller.animateToPage(index,
+                duration: Duration(microseconds: 750), curve: Curves.ease);
+            print(index);
           },
         ),
       ),
